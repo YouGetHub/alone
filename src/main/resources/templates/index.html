@@ -5,6 +5,10 @@
     <title>Title</title>
 </head>
 <body>
-
+<p th:text="${img}"></p>
+<img th:src="@{${nameimg}}"/>
+<img th:text="${nameimg}"/>
+<a href="/alone/FileUploadController/img">点击到上传图片界面</a>
 </body>
+</html>
 </html>

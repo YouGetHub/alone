@@ -87,32 +87,4 @@ public class UserController {
             return "error";
         }
     }
-
-    /**
-     * 上次图片
-     *//*
-    @RequestMapping("/img")
-    public String img(@RequestParam("name")String name,@RequestParam("filename")MultipartFile multipartFile, HttpServletRequest request){
-        System.out.println("123");
-        // 判断上传文件是否存在
-         if (!multipartFile.isEmpty()&&multipartFile.getSize()>0){
-            // 获取原文件名称
-            String originalFilename = multipartFile.getOriginalFilename();
-            // 文件上传目录
-            String realPath = request.getServletContext().getRealPath("/upload");
-            File file = new File(realPath);
-            // 上传目录不存在，就先创建
-            if (!file.exists()){
-                file.mkdirs();
-            }
-            // 重新命名上传文件名称
-            String newFileName = name + "-" + UUID.randomUUID() + "-" + originalFilename;
-            try {
-                multipartFile.transferTo(new File(realPath,newFileName));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-    }*/
-
 }

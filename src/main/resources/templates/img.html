@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
-<script type="text/javascript" src="/alone/js/Jquery-3.4.1.js"></script>
+<script type="text/javascript" src="D://Software/IntelliJ IDEA 2018.3.6/IdeaProjects/alone/static/js/Jquery-3.4.1.js"></script>
 <script>
     function fun6() {
         var file1 = $("#file").val();
@@ -18,11 +18,10 @@
     }
 </script>
 <body>
-<form action="/alone/123/upload" method="post" enctype="multipart/form-data">
+<form action="/alone/FileUploadController/upload" method="post" enctype="multipart/form-data">
     name:<input type="text" name="name">
     img:<input type="file" name="file" value="" id="file" onchange="fun6()">
     <input type="submit" value="上传">
 </form>
-<p th:text="${img}"></p>
 </body>
 </html>
