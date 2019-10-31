@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script type="text/javascript" src="/alone/js/Jquery-3.4.1.js"></script>
+<script>
+    function fun6() {
+        var file1 = $("#file").val();
+        if (file1 == ""){
+            console.log("请上传图片，不能为空");
+            return false;
+        }else if (!/\.(gif|jpg|jpeg|png|GIF|JPG|PNG)$/.test(file1)){
+            console.log("图片类型必须是.gif,jpeg,jpg,png中的一种");
+            return false;
+        }
+    }
+</script>
+<body>
+<form action="/alone/123/upload" method="post" enctype="multipart/form-data">
+    name:<input type="text" name="name">
+    img:<input type="file" name="file" value="" id="file" onchange="fun6()">
+    <input type="submit" value="上传">
+</form>
+<p th:text="${img}"></p>
+</body>
+</html>

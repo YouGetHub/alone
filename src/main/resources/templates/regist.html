@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>regist</title>
+</head>
+
+<style type="text/css">
+    body{
+        margin:0;
+        padding:0;
+        font-size:12px;
+        line-height:20px;
+    }
+    .main{
+        width:525px;
+        margin-left:auto;
+        margin-right:auto;
+    }
+    .hr_1 {
+        font-size: 14px;
+        font-weight: bold;
+        color: #3275c3;
+        height: 35px;
+        border-bottom-width: 2px;
+        border-bottom-style: solid;
+        border-bottom-color: #3275c3;
+        vertical-align:bottom;
+        padding-left:12px;
+    }
+    .left{
+        text-align:right;
+        width:80px;
+        height:25px;
+        padding-right:5px;
+    }
+
+    .center{
+        width:135px;
+    }
+    .in{
+        width:130px;
+        height:16px;
+        border:solid 1px #79abea;
+    }
+
+    .red{
+        color:#cc0000;
+        font-weight:bold;
+    }
+
+    div{
+        color:#F00;
+    }
+</style>
+
+<script type="text/javascript" src="/alone/js/Jquery-3.4.1.js"></script>
+<script>
+    //用户名验证
+    function fun1(){
+        console.log("开始验证用户名");
+        var username = $("#username").val();// 获取输入得username
+        reg = /^[0-9a-zA-Z|_]{6,12}$/g;//长度6-20个字符，只能包括字母、数字、下划线
+        if (username == "" || username.trim() == "") {
+            console.log("请输入用户名");
+            $("#user_prompt").text("请输入用户名 6-12个字符，字母、数字、下划线");
+            sb = false;
+            return false;
+        }else if (!reg.test(username)){
+            console.log("用户名不规范 6-12个字符，字母、数字、下划线");
+            $("#user_prompt").text("用户名不规范 6-12个字符，字母、数字、下划线");
+            return false;
+        }
+        $.ajax({
+            type:"post",
+            url:"/alone/UserController/selectUserByUserName",
+            data:{"username":username},
+            dataType:"text",
+            success:function (data) {
+                if (data=="true"){
+                    console.log("账号可以用");
+                    $("#user_prompt").text("√");
+                }else{
+                    console.log("账号已注册");
+                    $("#user_prompt").text("账号已注册");
+                    return false;
+                }
+            },error:function () {
+                console.log("error");
+            }
+        });
+    }
+    // 密码验证
+    function fun2() {
+        var pwd1 = $("#password1").val();
+        reg=/^\w{4,10}$/;
+        if (pwd1 == "" || pwd1.trim() == ""){
+            console.log("密码不能为空 密码由英文字母和数字组成的4-10位字符");
+            $("#pwd_prompt").text("密码不能为空 密码由英文字母和数字组成的4-10位字符");
+            return false;
+        }else if (!reg.test(pwd1)){
+            console.log("密码不规范 密码由英文字母和数字组成的4-10位字符");
+            $("#pwd_prompt").text("密码不规范 密码由英文字母和数字组成的4-10位字符");
+            return false;
+        }
+        $("#pwd_prompt").text("√");
+    }
+    //确认密码
+    function fun3() {
+        var pwd1 = $("#password1").val();
+        var pwd2 = $("#password2").val();
+        reg=/^\w{4,10}$/;
+        if (pwd2 == "" || pwd2.trim() == "") {
+            console.log("密码不能为空 密码由英文字母和数字组成的4-10位字符");
+            $("#repwd_prompt").text("密码不能为空 密码由英文字母和数字组成的4-10位字符");
+            return false;
+        } else if (!reg.test(pwd2)){
+            console.log("密码不规范 密码由英文字母和数字组成的4-10位字符");
+            $("#repwd_prompt").text("密码不规范 密码由英文字母和数字组成的4-10位字符");
+            return false;
+        }else if (pwd1 != pwd2) {
+            console.log("两次输入密码不一致");
+            $("#repwd_prompt").text("两次输入密码不一致");
+            return false;
+        } else {
+            $("#repwd_prompt").text("√");
+        }
+    }
+
+    //验证邮箱
+    function fun4() {
+        var email = $("#email").val();
+        reg = /^\w+@\w+((\.\w+)+)$/;
+        if (email == "" || email.trim() == "") {
+            $("#email_prompt").text("邮箱 不能为空");
+            return false;
+        } else if (!reg.test(email)) {
+            $("#email_prompt").text("邮箱格式输入错误");
+            return false;
+        } else {
+            $("#email_prompt").text("√");
+            return true;
+        }
+    }
+
+    //验证手机号
+    function fun5() {
+        var phone = $("#mobile").val();
+        reg = /^1[34578]\d{9}$/;
+        if (phone == "" || phone.trim() == "") {
+            $("#mobile_prompt").text("手机号不能为空");
+            return false;
+        } else if (!reg.test(phone)) {
+            $("#mobile_prompt").text("手机号格式错误");
+            return false;
+        } else {
+            $("#mobile_prompt").text("√");
+            return true;
+        }
+    }
+</script>
+<body>
+    <table class="main" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+            <td class="hr_1"><a href="/alone/UserController/register">注册</a></td>
+            <td class="hr_1"><a href="/alone/UserController/login">登录</a></td>
+        </tr>
+        <tr>
+            <td style="height:10px;"></td>
+        </tr>
+        <form accept-charset="utf-8" action="/alone/UserController/insertUserRegistered" method="post" enctype="multipart/form-data">
+            <tr>
+                <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                        <td class="left">用户名：</td>
+                        <td class="center"><input name="username" id="username" type="text" class="in" required onchange="fun1()"></td>
+                        <td><div id="user_prompt"></div></td>
+                    </tr>
+                    <tr>
+                        <td class="left">密码：</td>
+                        <td class="center"><input id="password1" type="password" class="in" name="password" required onchange="fun2()"></td>
+                        <td><div id="pwd_prompt"></div></td>
+                    </tr>
+                    <tr>
+                        <td class="left">确认密码：</td>
+                        <td class="center"><input id="password2" type="password" class="in" required onchange="fun3()"></td>
+                        <td><div id="repwd_prompt"></div></td>
+                    </tr>
+                    <tr>
+                        <td class="left">电子邮箱：</td>
+                        <td class="center"><input id="email" type="text" class="in" name="email" required onchange="fun4()"/></td>
+                        <td><div id="email_prompt"></div></td>
+                    </tr>
+                    <tr>
+                        <td class="left">手机号码：</td>
+                        <td class="center"><input id="mobile" type="text" class="in" name="phonenumber" required onchange="fun5()"/></td>
+                        <td><div id="mobile_prompt"></div></td>
+                    </tr>
+                    <tr>
+                        <td class="left">&nbsp;</td>
+                        <td class="center">
+                            <disabled>
+                                <input type="submit"/>
+                            </disabled>
+                            </td>
+                        <td>&nbsp;</td>
+                    </tr>
+                </table>
+                </td>
+            </tr>
+        </form>
+    </table>
+</body>
+</html>
