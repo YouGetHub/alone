@@ -46,5 +46,16 @@ public class UserServiceImpl implements UserService {
         return userMapper.selectUserByUserName(username);
     }
 
+    /**
+     * 使用手机号登陆findUserLogin
+     * @param phonenumber
+     * @param password
+     * @return
+     */
+    @Override
+    public int findUserLogin(String phonenumber, String password) {
+        return userMapper.findUserLogin(phonenumber,password);
+    }
+
 
 }

@@ -25,6 +25,16 @@ public interface UserService {
 
     /**
      * 用户注册验证用户名是否存在
+     * @param username
+     * @return
      */
     String selectUserByUserName(String username);
+
+    /**
+     * 使用手机号登陆
+     * @param phonenumber
+     * @param password
+     * @return
+     */
+    int findUserLogin(String phonenumber,String password);
 }

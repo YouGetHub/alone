@@ -6,6 +6,9 @@
 
     <insert id="insertUserRegistered">
         INSERT INTO user(username,password,email,phonenumber,createdate) VALUES (#{username},#{password},#{email},#{phonenumber},#{createdate})
+        <selectKey  keyProperty="id" resultType="java.lang.Integer" order="AFTER">
+            SELECT LAST_INSERT_ID();
+        </selectKey>
     </insert>
 
     <select id="selectUserAll" resultType="com.entity.User">
@@ -14,5 +17,9 @@
 
     <select id="selectUserByUserName" resultType="java.lang.String">
         SELECT id FROM user WHERE username = #{username}
+    </select>
+
+    <select id="findUserLogin" resultType="java.lang.Integer">
+        SELECT id FROM user WHERE phonenumber=#{phonenumber} AND password=#{password}
     </select>
 </mapper>

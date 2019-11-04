@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p th:text="${img}"></p>
+<img th:src="@{${nameimg}}"style="width: 100px;height: 100px;"/><br/>
+<img th:text="${nameimg}" /><br/>
+<a href="/alone/FileUploadController/img">点击到上传图片界面</a>
+</body>
+</html>

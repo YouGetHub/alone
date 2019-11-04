@@ -33,7 +33,7 @@ public interface UserMapper {
     String selectUserByUserName(String username);
 
     /**
-     * 用户登录
+     * 使用手机号登陆
      */
-
+    int findUserLogin(String phonenumber,String password);
 }

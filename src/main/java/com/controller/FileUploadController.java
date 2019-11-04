@@ -35,7 +35,7 @@ public class FileUploadController {
             map.put("code",500);
             map.put("msg","请上传1MB以内的图片");
             model.addAttribute("img","文件上传失败 请上传1MB以内的图片");
-            return "index";
+            return "imgsuccess";
         }
         //https://blog.csdn.net/tangpeng2018/article/details/79393023
         String scheme = request.getScheme()+"://" + request.getServerName() + ":" +request.getServerPort() + request.getContextPath();
@@ -53,6 +53,6 @@ public class FileUploadController {
             e.printStackTrace();
             model.addAttribute("img","失败");
         }
-        return "index";
+        return "imgsuccess";
     }
 }

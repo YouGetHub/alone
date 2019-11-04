@@ -39,11 +39,23 @@ public class User implements Serializable {
      */
     private String phonenumber;
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                ", phonenumber='" + phonenumber + '\'' +
+                ", createdate='" + createdate + '\'' +
+                '}';
+    }
+
     /**
      * 用户创建日期
      */
     @DateTimeFormat(pattern = "yyyy年MM月dd日HH点mm分")
-    private String createdate = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy年MM月dd日HH点mm分"));
+    private String createdate = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd-HH.mm"));
 
     public User() {
 
