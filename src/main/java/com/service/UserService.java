@@ -36,5 +36,21 @@ public interface UserService {
      * @param password
      * @return
      */
-    int findUserLogin(String phonenumber,String password);
+    String findUserLogin(String phonenumber,String password);
+
+    /**
+     * 使用邮箱登陆
+     * @param email
+     * @param password
+     * @return
+     */
+    String findUserEmailLogin(String email,String password);
+
+    /**
+     * 使用用户名登陆
+     * @param username
+     * @param password
+     * @return
+     */
+    String findUserUserNameLogin(String username,String password);
 }

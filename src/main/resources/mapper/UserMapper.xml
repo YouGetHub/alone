@@ -19,7 +19,15 @@
         SELECT id FROM user WHERE username = #{username}
     </select>
 
-    <select id="findUserLogin" resultType="java.lang.Integer">
+    <select id="findUserLogin" resultType="java.lang.String">
         SELECT id FROM user WHERE phonenumber=#{phonenumber} AND password=#{password}
+    </select>
+
+    <select id="findUserEmailLogin" resultType="java.lang.String">
+        SELECT id FROM user WHERE email = #{email} AND password=#{password}
+    </select>
+
+    <select id="findUserUserNameLogin" resultType="java.lang.String">
+        SELECT id FROM user WHERE username = #{username} AND password=#{password}
     </select>
 </mapper>

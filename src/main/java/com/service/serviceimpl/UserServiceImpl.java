@@ -47,14 +47,51 @@ public class UserServiceImpl implements UserService {
     }
 
     /**
-     * 使用手机号登陆findUserLogin
+     * 使用手机号登陆
      * @param phonenumber
      * @param password
      * @return
      */
     @Override
-    public int findUserLogin(String phonenumber, String password) {
-        return userMapper.findUserLogin(phonenumber,password);
+    public String findUserLogin(String phonenumber, String password) {
+        String userLogin = userMapper.findUserLogin(phonenumber, password);
+        if (userLogin == null){
+            return "0";
+        }else{
+            return "1";
+        }
+    }
+
+    /**
+     * 使用邮箱登陆findUserEmailLogin
+     * @param email
+     * @param password
+     * @return
+     */
+    @Override
+    public String findUserEmailLogin(String email, String password) {
+        String userEmailLogin = userMapper.findUserEmailLogin(email, password);
+        if (userEmailLogin == null){
+            return "0";
+        }else{
+            return "1";
+        }
+    }
+
+    /**
+     * 使用用户名登陆
+     * @param username
+     * @param password
+     * @return
+     */
+    @Override
+    public String findUserUserNameLogin(String username, String password) {
+        String userUserNameLogin = userMapper.findUserUserNameLogin(username, password);
+        if (userUserNameLogin == null){
+            return "0";
+        }else{
+            return "1";
+        }
     }
 
 

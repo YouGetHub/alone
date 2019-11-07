@@ -35,5 +35,20 @@ public interface UserMapper {
     /**
      * 使用手机号登陆
      */
-    int findUserLogin(String phonenumber,String password);
+    String findUserLogin(String phonenumber,String password);
+
+    /**
+     * 使用邮箱登陆
+     */
+    String findUserEmailLogin(String email,String password);
+
+    /**
+     * 使用用户名登陆
+     * @param username
+     * @param password
+     * @return
+     */
+    String findUserUserNameLogin(String username,String password);
+
+    
 }

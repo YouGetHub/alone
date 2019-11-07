@@ -55,7 +55,7 @@ public class User implements Serializable {
      * 用户创建日期
      */
     @DateTimeFormat(pattern = "yyyy年MM月dd日HH点mm分")
-    private String createdate = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd-HH.mm"));
+    private String createdate = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
 
     public User() {
 
